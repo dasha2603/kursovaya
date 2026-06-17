@@ -150,6 +150,14 @@ class TransportSolver:
         df = df.round(0).astype(int)
 
         return df, self.total_cost
+    def set_data(self, supplies, demands, costs):
+        """Установка новых данных для транспортной задачи"""
+        self.supplies = supplies
+        self.demands = demands
+        self.costs = np.array(costs)
+        self.supply_names = [f"P{i+1}" for i in range(len(supplies))]
+        self.demand_names = [f"FC{i+1}" for i in range(len(demands))]
+        self.is_solved = False
 
     def get_solution_summary(self):
         """Получение текстового описания решения"""

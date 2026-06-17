@@ -51,9 +51,9 @@ class SalesForecast:
         return self.r2_train, self.r2_test, self.mae
 
     def predict(self, price, capacity, automation, energy, weight):
-        """Ручной прогноз по введённым значениям"""
+        # Убираем автоматическое обучение!
         if not self.is_trained:
-            self.train()
+            raise Exception("Модель не обучена. Сначала нажмите 'Обучить модель'.")
 
         features = np.array([[price, capacity, automation, energy, weight]])
         prediction = self.model.predict(features)[0]
